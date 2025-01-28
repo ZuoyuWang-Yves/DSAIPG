@@ -6,6 +6,10 @@ package com.phasmidsoftware.dsaipg.misc.randomwalk;
 
 import java.util.Random;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /**
  * The RandomWalk class simulates a two-dimensional random walk. A "drunkard"
  * moves in a random direction for a specified number of steps, and the distance
@@ -19,9 +23,10 @@ public class RandomWalk {
      *
      * @return the (Euclidean) distance from the origin to the current position.
      */
-    public double distance() {
-        // TO BE IMPLEMENTED 
-         return 0.0;
+	public double distance() {
+        // TO BE IMPLEMENTED
+    	
+         return Math.sqrt((long)x*x + (long)y*y);
         // END SOLUTION
     }
 
@@ -31,9 +36,11 @@ public class RandomWalk {
      * @param dx the distance he moves in the x direction
      * @param dy the distance he moves in the y direction
      */
-    private void move(int dx, int dy) {
+	private void move(int dx, int dy) {
         // TO BE IMPLEMENTED  do move
-         throw new RuntimeException("Not implemented");
+    	x += dx;
+    	y += dy;
+//         throw new RuntimeException("Not implemented");
         // END SOLUTION
     }
 
@@ -42,9 +49,12 @@ public class RandomWalk {
      *
      * @param m the number of steps the drunkard takes
      */
-    private void randomWalk(int m) {
+	private void randomWalk(int m) {
         // TO BE IMPLEMENTED 
-throw new RuntimeException("implementation missing");
+    	for(int i = 0; i<m; i++) {
+    		randomMove();
+    	}
+//throw new RuntimeException("implementation missing");
     }
 
     /**
@@ -89,13 +99,37 @@ throw new RuntimeException("implementation missing");
      *             and args[1] optionally specifies the number of experiments (default is 30).
      *             If args is empty, the method throws a RuntimeException indicating invalid syntax.
      */
+//    public static void main(String[] args) {
+//        if (args.length == 0)
+//            throw new RuntimeException("Syntax: RandomWalk steps [experiments]");
+//        int m = Integer.parseInt(args[0]);
+//        int n = 30;
+//        if (args.length > 1) n = Integer.parseInt(args[1]);
+//        double meanDistance = randomWalkMulti(m, n);
+//        System.out.println(m + " steps: " + meanDistance + " over " + n + " experiments");
+//    }
     public static void main(String[] args) {
-        if (args.length == 0)
-            throw new RuntimeException("Syntax: RandomWalk steps [experiments]");
-        int m = Integer.parseInt(args[0]);
-        int n = 30;
-        if (args.length > 1) n = Integer.parseInt(args[1]);
-        double meanDistance = randomWalkMulti(m, n);
-        System.out.println(m + " steps: " + meanDistance + " over " + n + " experiments");
+    	int [] steps = {10, 20, 30, 40, 50, 60, 85, 90, 110, 130, 150, 200, 220, 240, 250, 290, 300, 310,
+    			320, 350, 400, 500, 600, 700, 850};
+    	int times = 100;
+    	
+    	// create a csv file to store results
+    	String csvPath = "E:\\Northeastern_University_Masters\\INFO6205\\DSAIPG";
+    	String csvName = "randomWalkResult.csv";
+    	
+    	
+    	String csv = csvPath + File.separator + csvName;
+    	
+    	try(FileWriter writer = new FileWriter(csv)) {
+    		writer.append("m,AveDistance\n");
+    		
+    		for(int m:steps) {
+    			double aveDistance = randomWalkMulti(m, times);
+    			writer.append(String.format("%d,%.5f\n", m, aveDistance));
+    		}
+    		System.out.println("Result exports to " + csv);
+    	}catch(IOException e) {
+    		System.err.println("Error: " + e.getMessage());
+    	}
     }
 }
