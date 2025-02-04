@@ -5,6 +5,7 @@
 package com.phasmidsoftware.dsaipg.adt.threesum;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +24,8 @@ public class ThreeSumQuadratic implements ThreeSum {
      * @param a a sorted array.
      */
     public ThreeSumQuadratic(int[] a) {
+//    	Arrays.sort(a); //////////////////////////////////////////////////////
+    	
         this.a = a;
         length = a.length;
     }
@@ -49,10 +52,30 @@ public class ThreeSumQuadratic implements ThreeSum {
      */
      List<Triple> getTriples(int j) {
          List<Triple> triples = new ArrayList<>();
-        // TO BE IMPLEMENTED  : for each candidate, test if a[i] + a[j] + a[k] = 0.
-throw new RuntimeException("implementation missing");
+
+         int i = 0;
+         int k = length - 1;  // pointers
+         
+         
+         while(i < j && k > j) {
+        	 int sum = a[i] + a[j] + a[k]; 
+        	 if(sum == 0) {
+        		 triples.add(new Triple(a[i], a[j], a[k]));
+        		 
+        		 i++;
+        		 k--;
+        		 
+        	 }else if(sum < 0) {	
+        		 i++;
+        	 }else {
+        		 k--;
+        	 }
+         }
+         return triples;
     }
 
+
+    
     private final int[] a;
     private final int length;
 }

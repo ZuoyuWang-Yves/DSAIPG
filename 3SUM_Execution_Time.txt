@@ -1,0 +1,45 @@
+ThreeSumBenchmark: N=250
+2025-02-03 21:39:40.139 INFO  TimeLogger - ThreeSumQuadratic: Raw time per run (mSec):  163.0000
+2025-02-03 21:39:40.140 INFO  TimeLogger - ThreeSumQuadratic: Normalized time per run (n^2):  5216.0000
+2025-02-03 21:39:40.251 INFO  TimeLogger - ThreeSumQuadrithmic: Raw time per run (mSec):  111.0000
+2025-02-03 21:39:40.252 INFO  TimeLogger - ThreeSumQuadrithmic: Normalized time per run (n^2 log n):  222.9536
+2025-02-03 21:39:41.068 INFO  TimeLogger - ThreeSumCubic: Raw time per run (mSec):  816.0000
+2025-02-03 21:39:41.069 INFO  TimeLogger - ThreeSumCubic: Normalized time per run (n^3):  313.3440
+ThreeSumBenchmark: N=500
+2025-02-03 21:39:41.198 INFO  TimeLogger - ThreeSumQuadratic: Raw time per run (mSec):  129.0000
+2025-02-03 21:39:41.198 INFO  TimeLogger - ThreeSumQuadratic: Normalized time per run (n^2):  1032.0000
+2025-02-03 21:39:41.341 INFO  TimeLogger - ThreeSumQuadrithmic: Raw time per run (mSec):  143.0000
+2025-02-03 21:39:41.341 INFO  TimeLogger - ThreeSumQuadrithmic: Normalized time per run (n^2 log n):  63.7981
+2025-02-03 21:39:44.400 INFO  TimeLogger - ThreeSumCubic: Raw time per run (mSec):  3059.0000
+2025-02-03 21:39:44.400 INFO  TimeLogger - ThreeSumCubic: Normalized time per run (n^3):  146.8320
+ThreeSumBenchmark: N=1000
+2025-02-03 21:39:44.499 INFO  TimeLogger - ThreeSumQuadratic: Raw time per run (mSec):  98.0000
+2025-02-03 21:39:44.499 INFO  TimeLogger - ThreeSumQuadratic: Normalized time per run (n^2):  196.0000
+2025-02-03 21:39:44.713 INFO  TimeLogger - ThreeSumQuadrithmic: Raw time per run (mSec):  213.0000
+2025-02-03 21:39:44.713 INFO  TimeLogger - ThreeSumQuadrithmic: Normalized time per run (n^2 log n):  21.3731
+2025-02-03 21:39:53.690 INFO  TimeLogger - ThreeSumCubic: Raw time per run (mSec):  8976.0000
+2025-02-03 21:39:53.690 INFO  TimeLogger - ThreeSumCubic: Normalized time per run (n^3):  53.8560
+ThreeSumBenchmark: N=2000
+2025-02-03 21:39:53.903 INFO  TimeLogger - ThreeSumQuadratic: Raw time per run (mSec):  213.0000
+2025-02-03 21:39:53.903 INFO  TimeLogger - ThreeSumQuadratic: Normalized time per run (n^2):  106.5000
+2025-02-03 21:39:54.464 INFO  TimeLogger - ThreeSumQuadrithmic: Raw time per run (mSec):  561.0000
+2025-02-03 21:39:54.464 INFO  TimeLogger - ThreeSumQuadrithmic: Normalized time per run (n^2 log n):  12.7898
+2025-02-03 21:40:31.088 INFO  TimeLogger - ThreeSumCubic: Raw time per run (mSec):  36624.0000
+2025-02-03 21:40:31.089 INFO  TimeLogger - ThreeSumCubic: Normalized time per run (n^3):  27.4680
+ThreeSumBenchmark: N=4000
+2025-02-03 21:40:31.605 INFO  TimeLogger - ThreeSumQuadratic: Raw time per run (mSec):  516.0000
+2025-02-03 21:40:31.605 INFO  TimeLogger - ThreeSumQuadratic: Normalized time per run (n^2):  64.5000
+2025-02-03 21:40:32.884 INFO  TimeLogger - ThreeSumQuadrithmic: Raw time per run (mSec):  1278.0000
+2025-02-03 21:40:32.884 INFO  TimeLogger - ThreeSumQuadrithmic: Normalized time per run (n^2 log n):  6.6753
+2025-02-03 21:42:55.591 INFO  TimeLogger - ThreeSumCubic: Raw time per run (mSec):  142707.0000
+2025-02-03 21:42:55.591 INFO  TimeLogger - ThreeSumCubic: Normalized time per run (n^3):  13.3788
+ThreeSumBenchmark: N=8000
+2025-02-03 21:42:57.350 INFO  TimeLogger - ThreeSumQuadratic: Raw time per run (mSec):  1759.0000
+2025-02-03 21:42:57.350 INFO  TimeLogger - ThreeSumQuadratic: Normalized time per run (n^2):  54.9688
+2025-02-03 21:43:00.937 INFO  TimeLogger - ThreeSumQuadrithmic: Raw time per run (mSec):  3586.0000
+2025-02-03 21:43:00.937 INFO  TimeLogger - ThreeSumQuadrithmic: Normalized time per run (n^2 log n):  4.3215
+ThreeSumBenchmark: N=16000
+2025-02-03 21:43:06.375 INFO  TimeLogger - ThreeSumQuadratic: Raw time per run (mSec):  5437.0000
+2025-02-03 21:43:06.375 INFO  TimeLogger - ThreeSumQuadratic: Normalized time per run (n^2):  42.4766
+2025-02-03 21:43:16.770 INFO  TimeLogger - ThreeSumQuadrithmic: Raw time per run (mSec):  10395.0000
+2025-02-03 21:43:16.771 INFO  TimeLogger - ThreeSumQuadrithmic: Normalized time per run (n^2 log n):  2.9075
