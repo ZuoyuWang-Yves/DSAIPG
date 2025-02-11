@@ -58,7 +58,8 @@ public class InsertionSortPart3Test {
 	
 	public void MeasureInsertionSort(String type, InsertionSortComparator<Integer> Insertionsorter, 
 			Supplier<Integer[]> supplier) {
-		Benchmark_Timer<Integer[]> benchmark = new Benchmark_Timer<>("InsertionSort - " + type, array -> Insertionsorter.sort(array, 0, array.length));
+		Benchmark_Timer<Integer[]> benchmark = 
+				new Benchmark_Timer<>("InsertionSort - " + type, array -> Insertionsorter.sort(array, 0, array.length));
 		double time = benchmark.runFromSupplier(supplier, 10);
 		System.out.println(type + ": average sorting time: " + time + "ms");
 //		System.out.printf("%-20s: %.3f ms%n", type, time);
@@ -73,7 +74,8 @@ public class InsertionSortPart3Test {
 		for(int N:sizeOfn) {
 			System.out.printf("\nBenchmarking Insertion Sort for n = %d:\n", N);
 			
-			InsertionSortComparator<Integer> Insertionsorter = new InsertionSortComparator<>(comparator, N, 1, Config_Benchmark.setupConfigFixes());
+			InsertionSortComparator<Integer> Insertionsorter = 
+					new InsertionSortComparator<>(comparator, N, 1, Config_Benchmark.setupConfigFixes());
 			
 			MeasureInsertionSort("Random", Insertionsorter, () -> generateRandomArr(N));
 			MeasureInsertionSort("Ordered", Insertionsorter, () -> generateOrderedArr(N));
