@@ -79,8 +79,23 @@ public class PQBenchMark {
 				"Binary Heap using floyd",
 				unused -> {
 					PriorityQueue<Integer> pq = new PriorityQueue<>(M, Integer::compare, true, false);
+					
+					Integer highestSpilled = null;
+					
+					
 	                for(int i = 0; i < amount_insert; i++) {
+//	                    pq.give(elements[i]);
+	                	if (pq.size() >= M) { 
+	                        try {
+	                            Integer removed = pq.take();
+	                            if (highestSpilled == null || removed > highestSpilled) {
+	                                highestSpilled = removed;
+	                            }
+	                        } catch (PQException e) {
+	                        }
+	                    }
 	                    pq.give(elements[i]);
+	                    
 	                }
 	                for(int i = 0; i < amount_remove; i++) {
 	                	try {
@@ -89,6 +104,7 @@ public class PQBenchMark {
 	                		
 	                	}
 	                }
+	                System.out.println("Highest priority spilled element (Binary Heap with Floyd): " + highestSpilled);
 				}
 			);
 //		System.out.println("Binary Heap using floyd: " + binaryHeapFloydBenchmark.run(null, 10) + " ms");
@@ -103,7 +119,20 @@ public class PQBenchMark {
 				"4-ary Heap without floyd",
 				unused -> {
 					PriorityQueue<Integer> pq = new PriorityQueue<>(M, Integer::compare, false, true);
+					
+					Integer highestSpilled = null;
+					
 	                for(int i = 0; i < amount_insert; i++) {
+//	                    pq.give(elements[i]);
+	                	if (pq.size() >= M) { 
+	                        try {
+	                            Integer removed = pq.take();
+	                            if (highestSpilled == null || removed > highestSpilled) {
+	                                highestSpilled = removed;
+	                            }
+	                        } catch (PQException e) {
+	                        }
+	                    }
 	                    pq.give(elements[i]);
 	                }
 	                for(int i = 0; i < amount_remove; i++) {
@@ -113,6 +142,7 @@ public class PQBenchMark {
 	                		
 	                	}
 	                }
+	                System.out.println("Highest priority spilled element (4-Ary Heap No Floyd): " + highestSpilled);
 				}
 			);
 //		System.out.println("4 ary Heap no floyd: " + FourAryBenchmark.run(null, 10) + " ms");
@@ -128,9 +158,24 @@ public class PQBenchMark {
 				"4-ary Heap with floyd",
 				unused -> {
 					PriorityQueue<Integer> pq = new PriorityQueue<>(M, Integer::compare, true, true);
+					
+					Integer highestSpilled = null;
+
+
 	                for(int i = 0; i < amount_insert; i++) {
+//	                    pq.give(elements[i]);
+	                	if (pq.size() >= M) { 
+	                        try {
+	                            Integer removed = pq.take();
+	                            if (highestSpilled == null || removed > highestSpilled) {
+	                                highestSpilled = removed;
+	                            }
+	                        } catch (PQException e) {
+	                        }
+	                    }
 	                    pq.give(elements[i]);
 	                }
+	                
 	                for(int i = 0; i < amount_remove; i++) {
 	                	try {
 	                		pq.take();
@@ -138,6 +183,7 @@ public class PQBenchMark {
 	                		
 	                	}
 	                }
+	                System.out.println("Highest priority spilled element (4-Ary Heap with Floyd): " + highestSpilled);
 				}
 			);
 //		System.out.println("4 ary Heap using floyd: " + FourAryFloydBenchmark.run(null, 10) + " ms");
