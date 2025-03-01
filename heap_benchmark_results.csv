@@ -1,0 +1,5 @@
+Heap Type,Execution Time (ms)
+Binary Heap No Floyd,2.51226
+Binary Heap Using Floyd,2.28971
+4-Ary Heap Without Floyd,3.8346400000000003
+4-Ary Heap With Floyd,1.7159099999999998

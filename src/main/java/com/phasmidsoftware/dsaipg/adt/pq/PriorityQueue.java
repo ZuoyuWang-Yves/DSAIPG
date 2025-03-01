@@ -116,6 +116,7 @@ public class PriorityQueue<K> implements Iterable<K> {
      * @return true if the values are out of order.
      */
     boolean inverted(int i, int j) {
+    	if (binHeap[i] == null || binHeap[j] == null) return false;///
         return (comparator.compare(binHeap[i], binHeap[j]) > 0) ^ max;
     }
 
@@ -134,7 +135,30 @@ public class PriorityQueue<K> implements Iterable<K> {
         if (first > 0) result.next(); // strip off the leading null value.
         return result;
     }
+    
+    
+    /* 
+     * Primary Constructor for 4 ary heap
+     */
+    public PriorityQueue(boolean max, Object[] binHeap, int first, int m, Comparator<K> comparator, 
+    		boolean floyd, boolean is4aryHeap) {
+        this.max = max;
+        this.first = first;
+        this.comparator = comparator;
+        this.m = m;
+        //noinspection unchecked
+        this.binHeap = (K[]) binHeap;
+        this.floyd = floyd;	
+        this.is4aryHeap = is4aryHeap;
 
+    }
+    /*
+     * Secondary constructor for 4 ary heap
+     */
+    public PriorityQueue(int n, Comparator<K> comparator, boolean floyd, boolean is4aryHeap) {
+        this(true, new Object[n + 1], 1, 0, comparator, floyd, is4aryHeap);
+    }
+    
     /**
      * Primary constructor that takes the max value, an actual array of elements, and a comparator.
      *
@@ -152,8 +176,11 @@ public class PriorityQueue<K> implements Iterable<K> {
         this.m = m;
         //noinspection unchecked
         this.binHeap = (K[]) binHeap;
-        this.floyd = floyd;
+        this.floyd = floyd;	
+
+        
     }
+
 
     /**
      * Secondary constructor which takes only the priority queue's maximum capacity and a comparator
@@ -216,12 +243,21 @@ public class PriorityQueue<K> implements Iterable<K> {
      * @param ks         a Collection of K elements.
      * @param comparator a comparator for the type K
      */
+//    public PriorityQueue(Collection<K> ks, Comparator<K> comparator) {
+//        this(ks.size(), comparator);
+//        int i = 0;	
+//        for (K k : ks) binHeap[i++] = k;
+//        m = ks.size();
+//        int k = (m + 1) / 2 - 1;
+//        for (; k >= 0; k--) sink(k);
+//    }
+    
     public PriorityQueue(Collection<K> ks, Comparator<K> comparator) {
         this(ks.size(), comparator);
         int i = 0;
         for (K k : ks) binHeap[i++] = k;
         m = ks.size();
-        int k = (m + 1) / 2 - 1;
+        int k = (m + 1) / (is4aryHeap ? 4 : 2) - 1;
         for (; k >= 0; k--) sink(k);
     }
 
@@ -237,19 +273,39 @@ public class PriorityQueue<K> implements Iterable<K> {
      *          When the predicate is satisfied, we break out of the loop.
      * @return the final position of the element originally at index k after reorganization.
      */
+//    private int doHeapify(int k, BiPredicate<Integer, Integer> p) {
+//        int i = k;
+//        while (true) {
+//            int firstChild = firstChild(i);
+//            if (!(firstChild <= m + first - 1)) break;
+//            int j = firstChild;
+//            if (j < m + first - 1 && inverted(j, j + 1)) j++;
+//            if (p.test(i, j)) break;
+//            swap(i, j);
+//            i = j;
+//        }
+//        return i;
+//    }
     private int doHeapify(int k, BiPredicate<Integer, Integer> p) {
         int i = k;
-        while (true) {
-            int firstChild = firstChild(i);
-            if (!(firstChild <= m + first - 1)) break;
-            int j = firstChild;
-            if (j < m + first - 1 && inverted(j, j + 1)) j++;
+        while (firstChild(i) <= m + first - 1) {
+            int j = firstChild(i);
+            if (is4aryHeap) {
+                for (int c = 1; c <= 3; c++) { // Compare up to 3 additional children
+                    if (j + c <= m + first - 1 && inverted(j, j + c)) {
+                        j = j + c;
+                    }
+                }
+            } else {
+                if (j < m + first - 1 && inverted(j, j + 1)) j++;
+            }
             if (p.test(i, j)) break;
             swap(i, j);
             i = j;
         }
         return i;
     }
+
 
     /**
      * Adjusts a subtree rooted at index k to ensure it satisfies the heap property.
@@ -274,18 +330,24 @@ public class PriorityQueue<K> implements Iterable<K> {
     }
 
     /**
-     * Get the index of the parent of the element at index k
-     */
-    private int parent(int k) {
-        return (k + 1 - first) / 2 + first - 1;
-    }
+	     * Get the index of the parent of the element at index k
+	     */
+
+	    private int parent(int k) {
+	        return is4aryHeap ? (k + 1 - first) / 4 + first - 1 : (k + 1 - first) / 2 + first - 1;
+	    }
+
+
 
     /**
      * Get the index of the first child of the element at index k.
      * The index of the second child will be one greater than the result.
      */
+//    private int firstChild(int k) {
+//        return (k + 1 - first) * 2 + first - 1;
+//    }
     private int firstChild(int k) {
-        return (k + 1 - first) * 2 + first - 1;
+        return is4aryHeap ? (k + 1 - first) * 4 + first - 1 : (k + 1 - first) * 2 + first - 1;
     }
 
     /**
@@ -345,5 +407,8 @@ public class PriorityQueue<K> implements Iterable<K> {
      * When enabled, this optimization adjusts the binary heap to enhance performance in specific scenarios.
      */
     private final boolean floyd;
+    
+    
+    private boolean is4aryHeap; 
 
 }

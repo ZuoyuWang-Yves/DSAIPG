@@ -397,4 +397,70 @@ public class PriorityQueueTest {
         assertEquals(2, tester.invokePrivate("doHeapifyStandard", 0));
 
     }
+    
+//    /*
+//     * Test 4 ary SwimUp
+//     */
+//    @Test
+//    public void testSwimUp4aryHeap() {
+//        PriorityQueue<Integer> pq = new PriorityQueue<>(10, Integer::compare, false, true);
+//
+//        pq.give(10);
+//        pq.give(20);
+//        pq.give(30);
+//        pq.give(40);
+//        pq.give(50);
+//        pq.give(60);
+//
+//        final PrivateMethodTester tester = new PrivateMethodTester(pq);
+//        assertEquals(Integer.valueOf(60), tester.invokePrivate("peek", 1));
+//    }
+//    
+//    /*
+//     * Test 4 ary sink
+//     */
+//    public void testSink4aryHeap() {
+//        Integer[] heapArray = new Integer[]{0, 10, 20, 30, 40, 50};
+//        PriorityQueue<Integer> pq = new PriorityQueue<>(Arrays.asList(heapArray), Integer::compare, true, true);
+//
+//        final PrivateMethodTester tester = new PrivateMethodTester(pq);
+//        tester.invokePrivate("sink", 1);
+//
+//        assertEquals(Integer.valueOf(50), tester.invokePrivate("peek", 1));
+//    }
+//    
+//    /*
+//     * Test 4-ary insertion
+//     */
+//    @Test
+//    public void testGive4aryHeap() {
+//        PriorityQueue<Integer> pq = new PriorityQueue<>(10, Integer::compare, false, true);
+//
+//        pq.give(10);
+//        pq.give(20);
+//        pq.give(30);
+//        pq.give(40);
+//        pq.give(50);
+//
+//        final PrivateMethodTester tester = new PrivateMethodTester(pq);
+//        assertEquals(Integer.valueOf(50), tester.invokePrivate("peek", 1)); // Root should have the max value
+//    }
+//    
+//    /*
+//     * Test 4-ary deletion
+//     */
+//   @Test
+//   public void testTake4aryHeap() throws PQException {
+//	    PriorityQueue<Integer> pq = new PriorityQueue<>(10, Integer::compare, false, true);
+//
+//	    pq.give(50);
+//	    pq.give(20);
+//	    pq.give(30);
+//	    pq.give(10);
+//	    pq.give(40);
+//
+//	    assertEquals(Integer.valueOf(50), pq.take()); // First remove max element
+//	    assertEquals(Integer.valueOf(40), pq.take()); // Next max element
+//	    assertEquals(Integer.valueOf(30), pq.take()); // Then 30
+//	}
 }
