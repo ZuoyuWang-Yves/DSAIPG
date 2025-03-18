@@ -6,6 +6,7 @@ package com.phasmidsoftware.dsaipg.sort.par;
 
 import java.util.Arrays;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  * ParSort is a class implementing a parallel sorting algorithm.
@@ -16,6 +17,10 @@ import java.util.concurrent.CompletableFuture;
  * @author Ziyao Qiao. Thanks very much.
  */
 final class ParSort {
+	
+	// Play with number of threads
+	private static final int thread_num = 16;
+	private static final ForkJoinPool customPool = new ForkJoinPool(thread_num);
 
     /**
      * Specifies the cutoff value used to determine when to switch from parallel sorting
@@ -40,8 +45,9 @@ final class ParSort {
      */
     public static void sort(int[] array, int from, int to) {
         if (to - from >= cutoff) {
-            CompletableFuture<int[]> completableFuture1 = null;
-            CompletableFuture<int[]> completableFuture2 = null;
+        	
+            CompletableFuture<int[]> completableFuture1 = asyncSort(array, from, (from + to) / 2);
+            CompletableFuture<int[]> completableFuture2 = asyncSort(array, (from + to) / 2, to);
             // TO BE IMPLEMENTED 
             // END SOLUTION
             CompletableFuture<int[]> completableFuture = completableFuture1.thenCombine(completableFuture2, ParSort::doMerge);
@@ -65,6 +71,18 @@ final class ParSort {
         int[] result = new int[to - from];
         // TO BE IMPLEMENTED 
          // NOTE you need to do something here so that result is the sorted version of array.
+        if(to - from <= 1) {
+        	if(to - from == 1) {
+        		result[0] = array[from]; 	
+        	}
+        }
+    	else {
+    		int middle = (from + to) / 2;
+    		int[] left = sortRecursive(array, from, middle);
+    		int[] right = sortRecursive(array, middle, to);
+    		result = doMerge(left, right);
+    	}
+        
         // END SOLUTION
         return result;
     }
@@ -103,7 +121,7 @@ final class ParSort {
      */
     static CompletableFuture<int[]> asyncSort(int[] array, int from, int to) {
         return CompletableFuture.supplyAsync(
-                () -> sortRecursive(array, from, to)
+                () -> sortRecursive(array, from, to), customPool
         );
     }
 }

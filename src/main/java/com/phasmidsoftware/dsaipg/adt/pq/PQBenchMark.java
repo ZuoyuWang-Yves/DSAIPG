@@ -52,11 +52,7 @@ public class PQBenchMark {
 	                    pq.give(elements[i]);
 //	                    pq.give(elements[i]);
 	                }
-	                
-	                
-	                
-	                
-	                
+	                    
 	                for(int i = 0; i < amount_remove; i++) {
 	                	try {
 	                		pq.take();
@@ -104,7 +100,8 @@ public class PQBenchMark {
 	                		
 	                	}
 	                }
-	                System.out.println("Highest priority spilled element (Binary Heap with Floyd): " + highestSpilled);
+	                System.out.println("Highest priority spilled element (Binary Heap with Floyd): " + 
+	                highestSpilled);
 				}
 			);
 //		System.out.println("Binary Heap using floyd: " + binaryHeapFloydBenchmark.run(null, 10) + " ms");
@@ -142,7 +139,8 @@ public class PQBenchMark {
 	                		
 	                	}
 	                }
-	                System.out.println("Highest priority spilled element (4-Ary Heap No Floyd): " + highestSpilled);
+	                System.out.println("Highest priority spilled element (4-Ary Heap No Floyd): " +
+	                highestSpilled);
 				}
 			);
 //		System.out.println("4 ary Heap no floyd: " + FourAryBenchmark.run(null, 10) + " ms");
@@ -183,7 +181,8 @@ public class PQBenchMark {
 	                		
 	                	}
 	                }
-	                System.out.println("Highest priority spilled element (4-Ary Heap with Floyd): " + highestSpilled);
+	                System.out.println("Highest priority spilled element (4-Ary Heap with Floyd): " + 
+	                highestSpilled);
 				}
 			);
 //		System.out.println("4 ary Heap using floyd: " + FourAryFloydBenchmark.run(null, 10) + " ms");
